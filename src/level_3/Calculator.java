@@ -2,6 +2,8 @@ package level_3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Calculator {
     // 속성
@@ -47,5 +49,13 @@ public class Calculator {
     public void removeResult() {
         System.out.println("\n" + result.get(0) + "을 삭제합니다.");
         result.remove(result.get(0));
+    }
+
+    // 저장된 연산 결과들 중 Scanner로 입력받은 값보다 큰 결과값 들을 출력
+    public void printBigResult(double N) {
+        List<Double> collect = result.stream()
+                .filter(i -> i > N)      // 입력받은 N 값보다 큰 요소만 필터링
+                .toList();                      // 결과를 새로운 리스트로 수집
+        System.out.println((int)N + "보다 큰 값: " + collect + "\n");
     }
 }

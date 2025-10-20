@@ -48,7 +48,7 @@ public enum OperatorType {
                 return operatorType;
             }
         }
-        throw new IllegalArgumentException("잘못된 연산자입니다: " + input);
+        throw new IllegalArgumentException(input + " : 잘못된 연산자입니다 ❗");
     }
 }
 

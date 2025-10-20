@@ -1,8 +1,7 @@
 package level_3;
 
-import level_3.Calculator;
-
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -14,7 +13,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         while (true) {
-            int num1 = readInt(sc, "첫 번째 숫자 입력: ");
+            // 입력하고 있는 값은 하나인데 List로 받아올 필요 없음 Double
+             double num1 = readDouble(sc, "첫 번째 숫자 입력: ");
 
             // 열거형 참조변수 선언
             OperatorType operatorType;
@@ -36,9 +36,9 @@ public class Main {
             }
 
             // 나눗셈 연산에 0으로 나누기 방지
-            int num2;
+            double num2;
             while (true) {
-                num2 = readInt(sc, "두 번째 숫자 입력: ");
+                num2 = readDouble(sc, "두 번째 숫자 입력: ");
                 if (operatorType.getOperator() == '/' && num2 == 0) {
                     System.out.println("0으로 나눌 수 없습니다.");
                 } else {
@@ -69,13 +69,13 @@ public class Main {
         }
     }
 
-    // 정수 값만 입력 받도록 검증하는 메서드
-    public static int readInt(Scanner sc, String msg) {
-        int num = 0;
+    // 정수 값만 입력 받도록 검증하는 메서드 - double로 받기
+    public static double readDouble(Scanner sc, String msg) {
+        double num = 0.0;
         while (true) {
             try {
                 System.out.print(msg);
-                num = sc.nextInt();
+                num = sc.nextDouble();
                 return num;
             } catch (InputMismatchException e) {
                 System.out.println("❗숫자만 입력할 수 있습니다 ❗");

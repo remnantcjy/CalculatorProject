@@ -3,28 +3,26 @@ package level_3;
 import java.util.ArrayList;
 import java.util.List;
 
-import static level_3.OperatorType.*;
-
 public class Calculator {
     // 속성
-    private List<Integer> result = new ArrayList<>();
+    // 계산 결과를 담을 Double형 리스트
+    private List<Double> result = new ArrayList<>();
 
     // 생성자
 
     // 기능
     // getter
-    public List<Integer> getResult() {
+    public List<Double> getResult() {
         return this.result;
     }
 
     // setter
-    public void setResult(List<Integer> result) {
+    public void setResult(List<Double> result) {
         this.result = result;
     }
 
-
     // 사칙연산 수행 및 계산 결과를 컬렉션에 더해주는 메서드
-    public void calculate(int num1, int num2, OperatorType operator) {
+    public void calculate(double num1, double num2, OperatorType operator) {
 
         switch (operator) {
             case ADD:

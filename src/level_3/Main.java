@@ -53,17 +53,25 @@ public class Main {
             System.out.println("\n-----계산 결과 리스트-----");
             System.out.println(calculator.getResult());
 
-            System.out.println("\n더 계산하시겠습니까? (del 입력 시 삭제, exit 입력 시 종료)");
+            System.out.println("\n계속 계산하려면 아무 키나 입력하세요 (big: 큰 값 조회 / del: 삭제 / exit: 종료)");
 
 
             /* 반복문 종료 */
-            String exit_del_input = sc.next();
-            if (exit_del_input.equalsIgnoreCase("exit")) {
+            String userChoice = sc.next();
+            if (userChoice.equalsIgnoreCase("exit")) {
                 break;
-            } else if (exit_del_input.equalsIgnoreCase("del")) {
+            } else if (userChoice.equalsIgnoreCase("del")) {
                 calculator.removeResult();
                 System.out.println("-----삭제 후 리스트-----");
                 System.out.println(calculator.getResult() + "\n");
+            } else if (userChoice.equalsIgnoreCase("big")) {
+                if (calculator.getResult().isEmpty()) {
+                    System.out.println("리스트가 비어 있어 조회할 수 없습니다.");
+                } else {
+                    System.out.print("비교할 값 입력: ");
+                    double N = sc.nextDouble();
+                    calculator.printBigResult(N);
+                }
             }
 
         }

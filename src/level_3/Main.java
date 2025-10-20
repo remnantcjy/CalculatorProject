@@ -16,23 +16,30 @@ public class Main {
         while (true) {
             int num1 = readInt(sc, "첫 번째 숫자 입력: ");
 
-            char operator;
+            // 열거형 참조변수 선언
+            OperatorType operatorType;
+
+            // 사칙연산 입력 검증 메서드의 char형 인자변수 선언
+            char input;
             // 사칙연산 입력 검증
             while (true) {
-                System.out.print("사칙연산 기호 입력 (+, -, *, /): ");
-                operator = sc.next().charAt(0);
-                if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
+                try {
+                    System.out.print("사칙연산 기호 입력 (+, -, *, /): ");
+
+                    input = sc.next().charAt(0);
+                    // 사칙연산 입력 메서드 호출 및 반환
+                    operatorType = OperatorType.fromChar(input);
                     break;
-                } else {
-                    System.out.println("올바른 연산자가 아닙니다.");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
                 }
             }
 
-            // 나눗셈 연산에 0으로 나누기 방지 메서드
+            // 나눗셈 연산에 0으로 나누기 방지
             int num2;
             while (true) {
                 num2 = readInt(sc, "두 번째 숫자 입력: ");
-                if (operator == '/' && num2 == 0) {
+                if (operatorType.getOperator() == '/' && num2 == 0) {
                     System.out.println("0으로 나눌 수 없습니다.");
                 } else {
                     break;
@@ -40,8 +47,8 @@ public class Main {
             }
 
             // 사칙연산 계산기 메서드 호출
-            calculator.calculate(num1, num2, operator);
-            System.out.println("계산 결과: " + num1 + " " + operator + " " + num2 + " = " + calculator.getResult().get(0));
+            calculator.calculate(num1, num2, operatorType);
+            System.out.println("계산 결과: " + num1 + " " + operatorType.getOperator() + " " + num2 + " = " + calculator.getResult().get(0));
             // 계산 결과가 담긴 컬렉션을 출력
             System.out.println("\n-----계산 결과 리스트-----");
             System.out.println(calculator.getResult());
@@ -50,10 +57,10 @@ public class Main {
 
 
             /* 반복문 종료 */
-            String input = sc.next();
-            if (input.equalsIgnoreCase("exit")) {
+            String exit_del_input = sc.next();
+            if (exit_del_input.equalsIgnoreCase("exit")) {
                 break;
-            } else if (input.equalsIgnoreCase("del")) {
+            } else if (exit_del_input.equalsIgnoreCase("del")) {
                 calculator.removeResult();
                 System.out.println("-----삭제 후 리스트-----");
                 System.out.println(calculator.getResult() + "\n");

@@ -6,16 +6,12 @@ import java.util.List;
 import static level_3.OperatorType.*;
 
 public class Calculator {
-    // 속 - 변수 private 접근 제어자 설정
-    /* 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성 */
+    // 속성
     private List<Integer> result = new ArrayList<>();
 
-    // 생성자의 특징
-    // 1. 클래스명이 동일하다.
-    // 2. 반환 데이터 타입이 없다.
-    // 3. 여러 개가 존재할 수 있다.
+    // 생성자
 
-    // 기
+    // 기능
     // getter
     public List<Integer> getResult() {
         return this.result;
@@ -28,19 +24,19 @@ public class Calculator {
 
 
     // 사칙연산 수행 및 계산 결과를 컬렉션에 더해주는 메서드
-    public void calculate(int num1, int num2, char operator) {
+    public void calculate(int num1, int num2, OperatorType operator) {
 
         switch (operator) {
-            case '+':
+            case ADD:
                 result.add(num1 + num2);
                 break;
-            case '-':
+            case SUBTRACT:
                 result.add(num1 - num2);
                 break;
-            case '*':
+            case MULTIPLY:
                 result.add(num1 * num2);
                 break;
-            case '/':
+            case DIVIDE:
                 result.add(num1 / num2);
                 break;
             default:

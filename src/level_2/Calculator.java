@@ -41,5 +41,9 @@ public class Calculator {
         }
     }
 
-
+    // 가장 먼저 저장된 데이터를 삭제하는 메서드
+    public void removeResult() {
+        System.out.println("\n" + result.get(0) + "을 삭제합니다.");
+        result.remove(result.get(0));
+    }
 }

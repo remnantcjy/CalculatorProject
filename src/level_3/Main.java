@@ -48,32 +48,50 @@ public class Main {
 
             // 사칙연산 계산기 메서드 호출
             calculator.calculate(num1, num2, operatorType);
-            System.out.println("계산 결과: " + num1 + " " + operatorType.getOperator() + " " + num2 + " = " + calculator.getResult().get(0));
+            System.out.println("계산 결과: " + num1 + " " + operatorType.getOperator() + " " + num2 + " = " + calculator.getResult().get(calculator.getResult().size()-1));
             // 계산 결과가 담긴 컬렉션을 출력
             System.out.println("\n-----계산 결과 리스트-----");
             System.out.println(calculator.getResult());
 
             System.out.println("\n계속 계산하려면 아무 키나 입력하세요 (big: 큰 값 조회 / del: 삭제 / exit: 종료)");
 
-
-            /* 반복문 종료 */
             String userChoice = sc.next();
+
+            // exit 입력시 계산기 종료
             if (userChoice.equalsIgnoreCase("exit")) {
                 break;
             } else if (userChoice.equalsIgnoreCase("del")) {
-                calculator.removeResult();
-                System.out.println("-----삭제 후 리스트-----");
-                System.out.println(calculator.getResult() + "\n");
+                // del 입력시 리스트의 첫 번째 저장 값 삭제
+                while (true) {
+                    if (calculator.getResult().isEmpty()) {
+                        System.out.println("리스트가 비어 있어 삭제할 수 없습니다.\n");
+                        break;
+                    }
+                    calculator.removeResult();
+                    System.out.println("-----삭제 후 리스트-----");
+                    System.out.println(calculator.getResult() + "\n");
+                    System.out.println("더 삭제하시려면 아무 키 입력\n계산으로 돌아가기는 cal 입력");
+                    if (sc.next().equalsIgnoreCase("cal")) {
+                        break;
+                    }
+                }
             } else if (userChoice.equalsIgnoreCase("big")) {
-                if (calculator.getResult().isEmpty()) {
-                    System.out.println("리스트가 비어 있어 조회할 수 없습니다.");
-                } else {
-                    System.out.print("비교할 값 입력: ");
-                    double N = sc.nextDouble();
-                    calculator.printBigResult(N);
+                // big 입력시 스캐너로 입력받은 값보다 큰 값 비교하여 출력하기
+                while (true) {
+                    if (calculator.getResult().isEmpty()) {
+                        System.out.println("리스트가 비어 있어 조회할 수 없습니다.");
+                        break;
+                    } else {
+                        System.out.print("비교할 값 입력: ");
+                        double N = sc.nextDouble();
+                        calculator.printBigResult(N);
+                        System.out.println("더 비교하시려면 아무 키 입력\n계산으로 돌아가기는 cal 입력");
+                        if (sc.next().equalsIgnoreCase("cal")) {
+                            break;
+                        }
+                    }
                 }
             }
-
         }
     }
 

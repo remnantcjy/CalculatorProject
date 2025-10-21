@@ -82,6 +82,8 @@ public class Main {
                         System.out.println("리스트가 비어 있어 조회할 수 없습니다.");
                         break;
                     } else {
+                        System.out.println("-----현재 리스트-----");
+                        System.out.println(calculator.getResult() + "\n");
                         System.out.print("비교할 값 입력: ");
                         double N = sc.nextDouble();
                         calculator.printBigResult(N);
